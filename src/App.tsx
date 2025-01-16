@@ -4,6 +4,8 @@ import {RootLayout} from "./components/RootLayout.tsx";
 import {Error} from "./pages/Error.tsx";
 import {Dashboard} from "./pages/Dashboard.tsx";
 import {Staffs} from "./pages/Staffs.tsx";
+import {LogIn} from "./pages/LogIn.tsx";
+import {SignUp} from "./pages/SignUp.tsx";
 
 function App() {
   const routes = createBrowserRouter([
@@ -11,7 +13,9 @@ function App() {
       path: '/',
       element: <RootLayout/>,
       children: [
-        {path: '/', element: <Dashboard/>},
+        {path: '/', element: <LogIn/>},
+        {path: '/signup', element: <SignUp/>},
+        {path: '/dashboard', element: <Dashboard/>},
         {path: '/staffs', element: <Staffs/>},
       ]
     },

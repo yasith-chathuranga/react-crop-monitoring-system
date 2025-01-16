@@ -32,7 +32,7 @@ export function LogIn() {
                 </div>
 
                 <div className="flex-1 bg-gray-100 flex justify-center items-center p-5">
-                    <div className="w-full max-w-screen-sm h-3/4 bg-white p-10 rounded-lg shadow-md">
+                    <div className="w-full max-w-screen-sm bg-white p-10 rounded-lg shadow-md">
                         <h2 className="text-3xl font-semibold text-primary text-center mb-8">Login to Your Account</h2>
                         <form id="loginForm">
                             <div className="mb-4">

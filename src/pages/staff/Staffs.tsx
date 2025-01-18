@@ -1,11 +1,11 @@
 import { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../store/Store.ts";
-import {Staff} from "../models/Staff.ts";
-import {deleteStaff} from "../reducers/StaffSlice.ts";
-import {StaffFormModel} from "../components/StaffFormModel.tsx";
-import {SearchBar} from "../components/SearchBar.tsx";
-import {AddBtnModel} from "../components/AddBtnModel.tsx";
+import {RootState} from "../../store/Store.ts";
+import {Staff} from "../../models/Staff.ts";
+import {deleteStaff} from "../../reducers/StaffSlice.ts";
+import {StaffForm} from "./StaffForm.tsx";
+import {SearchBar} from "../../components/SearchBar.tsx";
+import {AddBtnModel} from "../../components/AddBtnModel.tsx";
 
 export function Staffs() {
     const staffList = useSelector((state: RootState) => state.staffs);
@@ -83,7 +83,7 @@ export function Staffs() {
                 </div>
 
                 {isModalOpen && (
-                    <StaffFormModel
+                    <StaffForm
                         staff={selectedStaff}
                         isViewMode={isViewMode}
                         onClose={() => setIsModalOpen(false)}

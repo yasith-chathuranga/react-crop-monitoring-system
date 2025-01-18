@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addStaff, updateStaff } from "../reducers/StaffSlice";
-import { Staff } from "../models/Staff";
+import { addStaff, updateStaff } from "../../reducers/StaffSlice.ts";
+import { Staff } from "../../models/Staff.ts";
 
 interface StaffFormProps {
     staff: Staff | null;
@@ -9,7 +9,7 @@ interface StaffFormProps {
     onClose: () => void;
 }
 
-export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
+export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
     const [id, setId] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -88,6 +88,12 @@ export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
             <div className="bg-white rounded-lg shadow-lg w-3/4 max-w-4xl">
                 <div className="bg-primary text-white rounded-t-lg p-4 flex justify-between items-center">
                     <h2 className="font-bold text-2xl">{isViewMode ? "View Staff" : staff ? "Update Staff" : "Add New Staff"}</h2>
+                    <button
+                        className="px-6 py-2 bg-primary text-white rounded"
+                        type="button"
+                        onClick={onClose}>
+                        <i className="fa-regular fa-circle-xmark fa-2x"></i>
+                    </button>
                 </div>
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -98,6 +104,7 @@ export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
                                 type="text"
                                 value={id}
                                 onChange={(e) => setId(e.target.value)}
+                                required
                                 disabled={isViewMode}
                             />
                         </div>
@@ -108,6 +115,7 @@ export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
                                 type="text"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
+                                required
                                 disabled={isViewMode}
                             />
                         </div>
@@ -118,6 +126,7 @@ export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
                                 type="text"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
+                                required
                                 disabled={isViewMode}
                             />
                         </div>
@@ -128,6 +137,7 @@ export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
                                 type="text"
                                 value={designation}
                                 onChange={(e) => setDesignation(e.target.value)}
+                                required
                                 disabled={isViewMode}
                             />
                         </div>
@@ -136,11 +146,11 @@ export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
                                 Role
                             </label>
                             <select
-                                id="role"
+                                className="w-full p-2 border border-accent rounded"
                                 value={role}
                                 onChange={(e) => setRole(e.target.value)}
                                 required
-                                className="w-full p-2 border border-accent rounded"
+                                disabled={isViewMode}
                             >
                                 <option value="">Select Role</option>
                                 <option value="ADMINISTRATIVE">Administrative</option>
@@ -150,18 +160,15 @@ export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
                             </select>
                         </div>
                         <div>
-                            <label
-                                htmlFor="gender"
-                                className="block font-semibold text-primary"
-                            >
+                            <label className="block font-semibold text-primary">
                                 Gender
                             </label>
                             <select
-                                id="gender"
+                                className="w-full p-2 border border-accent rounded"
                                 value={gender}
                                 onChange={(e) => setGender(e.target.value)}
                                 required
-                                className="w-full p-2 border border-accent rounded"
+                                disabled={isViewMode}
                             >
                                 <option value="">Select Gender</option>
                                 <option value="MALE">Male</option>
@@ -173,129 +180,142 @@ export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                            <label
-                                htmlFor="dob"
-                                className="block font-semibold text-primary"
-                            >
+                            <label className="block font-semibold text-primary">
                                 Date of Birth
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="date"
-                                id="dob"
                                 value={dob}
                                 onChange={(e) => setDob(e.target.value)}
                                 required
-                                className="w-full p-2 border border-accent rounded"
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label
-                                htmlFor="joinedDate"
-                                className="block font-semibold text-primary"
-                            >
+                            <label className="block font-semibold text-primary">
                                 Joined Date
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="date"
-                                id="joinedDate"
                                 value={joinedDate}
                                 onChange={(e) => setJoinedDate(e.target.value)}
                                 required
-                                className="w-full p-2 border border-accent rounded"
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label htmlFor="addressName" className="block font-semibold text-primary">
+                            <label className="block font-semibold text-primary">
                                 Address Name
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                id="addressName"
                                 value={addressName}
                                 onChange={(e) => setAddressName(e.target.value)}
-                                className="w-full p-2 border border-accent rounded"
+                                required
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label htmlFor="addressLane" className="block font-semibold text-primary">
+                            <label className="block font-semibold text-primary">
                                 Address Lane
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                id="addressLane"
                                 value={addressLane}
                                 onChange={(e) => setAddressLane(e.target.value)}
-                                className="w-full p-2 border border-accent rounded"
+                                required
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label htmlFor="addressCity" className="block font-semibold text-primary">
+                            <label className="block font-semibold text-primary">
                                 Address City
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                id="addressCity"
                                 value={addressCity}
                                 onChange={(e) => setAddressCity(e.target.value)}
-                                className="w-full p-2 border border-accent rounded"
-                            />
+                                required
+                                disabled={isViewMode}
+                                                   />
                         </div>
                         <div>
-                            <label htmlFor="addressState" className="block font-semibold text-primary">
+                            <label className="block font-semibold text-primary">
                                 Address State
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                id="addressState"
                                 value={addressState}
                                 onChange={(e) => setAddressState(e.target.value)}
-                                className="w-full p-2 border border-accent rounded"
+                                required
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label htmlFor="addressCode" className="block font-semibold text-primary">
+                            <label className="block font-semibold text-primary">
                                 Address Code
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="number"
-                                id="addressCode"
                                 value={addressCode}
                                 onChange={(e) => setAddressCode(e.target.value)}
-                                className="w-full p-2 border border-accent rounded"
+                                required
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label htmlFor="contactNo" className="block font-semibold text-primary">
+                            <label className="block font-semibold text-primary">
                                 Contact No
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="number"
-                                id="contactNo"
                                 value={contactNo}
                                 onChange={(e) => setContactNo(e.target.value)}
-                                className="w-full p-2 border border-accent rounded"
+                                required
+                                disabled={isViewMode}
                             />
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                         <div>
-                            <label htmlFor="email" className="block font-semibold text-primary">
+                            <label className="block font-semibold text-primary">
                                 Email
                             </label>
                             <input
+                                className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                id="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full p-2 border border-accent rounded"
+                                required
+                                disabled={isViewMode}
                             />
                         </div>
                     </div>
 
                     <div className="flex justify-end gap-4">
-                        <button className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary" type="button" onClick={handleClear} disabled={isViewMode}>Clear</button>
-                        <button className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary" type="submit" disabled={isViewMode}>{staff ? "Update" : "Save"}</button>
-                        <button className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary" type="button" onClick={onClose}>Close</button>
+                        {!isViewMode && (
+                            <>
+                                <button
+                                    className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary"
+                                    type="button"
+                                    onClick={handleClear}>
+                                    Clear
+                                </button>
+                                <button
+                                    className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary"
+                                    type="submit">
+                                    {staff ? "Update" : "Save"}
+                                </button>
+                            </>
+                        )}
                     </div>
                 </form>
             </div>

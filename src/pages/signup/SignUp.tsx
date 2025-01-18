@@ -59,7 +59,7 @@ export function SignUp() {
 
                         <div className="text-center mt-9 text-base text-gray-500">
                             Already have an account?{' '}
-                            <a href="/" className="text-primary hover:underline">
+                            <a href="/public" className="text-primary hover:underline">
                                 Login
                             </a>
                         </div>

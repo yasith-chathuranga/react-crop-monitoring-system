@@ -8,29 +8,44 @@ interface LogCardProps {
 }
 
 export function LogCardModel({ monitoringLog, onView, onUpdate, onDelete }: LogCardProps) {
-    const defaultImage = "https://via.placeholder.com/300x200";
+    const defaultImage = "";
 
     return (
-        <div className="card p-6 bg-white shadow-md rounded-lg">
-            <div className="relative w-full h-48 bg-gray-200 rounded-md overflow-hidden">
+        <div className="card p-5 bg-white shadow-md rounded-lg">
+            <h2 className="text-xl font-boldr">Log Code: {monitoringLog.logCode}</h2>
+            <div className="flex justify-center items-center relative w-48 h-48 bg-gray-200 overflow-hidden mx-auto">
                 <img
                     src={monitoringLog.observedImage || defaultImage}
                     alt={monitoringLog.logDetails || "Monitoring Log"}
                     className="object-cover w-full h-full"
                 />
             </div>
-            <h2 className="text-xl font-bold">{monitoringLog.logCode}</h2>
-            <h3>{monitoringLog.logDetails}</h3>
-            <p>{new Date(monitoringLog.logDate).toLocaleDateString()}</p>
-            <div className="flex justify-between space-x-2">
+            <h3 className="pt-2">{monitoringLog.logDetails}</h3>
+            <p className="pt-2 text-gray-600">Log Date: {new Date(monitoringLog.logDate).toLocaleDateString()}</p>
+            <div className="flex justify-around gap-4 pt-4">
                 {onView && (
-                    <button onClick={() => onView(monitoringLog)} className="bg-blue-500 px-4 py-2 text-white rounded">View</button>
+                    <button
+                        onClick={() => onView(monitoringLog)}
+                        className="bg-blue-500 px-4 py-2 text-white rounded flex items-center justify-center"
+                    >
+                        <i className="fas fa-eye"></i>
+                    </button>
                 )}
                 {onUpdate && (
-                    <button onClick={() => onUpdate(monitoringLog)} className="bg-green-500 px-4 py-2 text-white rounded">Update</button>
+                    <button
+                        onClick={() => onUpdate(monitoringLog)}
+                        className="bg-primary px-4 py-2 text-white rounded flex items-end justify-center"
+                    >
+                        <i className="fas fa-edit"></i>
+                    </button>
                 )}
                 {onDelete && (
-                    <button onClick={() => onDelete(monitoringLog)} className="bg-red-500 px-4 py-2 text-white rounded">Delete</button>
+                    <button
+                        onClick={() => onDelete(monitoringLog)}
+                        className="bg-red-500 px-4 py-2 text-white rounded flex items-center justify-center"
+                    >
+                        <i className="fas fa-trash-alt"></i>
+                    </button>
                 )}
             </div>
         </div>

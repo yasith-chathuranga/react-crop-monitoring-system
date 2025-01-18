@@ -41,8 +41,8 @@ export function SideBar() {
                                 </NavLink>
                             </li>
                             <li className="flex items-center gap-4 px-6 py-3 hover:bg-secondary transition rounded">
-                                <i className="fa-solid fa-screwdriver-wrench w-6 text-center"></i>
-                                <NavLink className="flex-1" to="/log">
+                                <i className="fa-brands fa-watchman-monitoring w-6 text-center"></i>
+                                <NavLink className="flex-1" to="/logs">
                                     Monitoring Log
                                 </NavLink>
                             </li>

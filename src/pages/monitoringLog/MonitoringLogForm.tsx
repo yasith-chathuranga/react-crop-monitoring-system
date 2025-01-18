@@ -113,6 +113,7 @@ export function MonitoringLogForm({ monitoringLog, isViewMode, onClose }: Monito
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="e.g. Planted new root crops"
                                 value={logDetails}
                                 onChange={(e) => setLogDetails(e.target.value)}
                                 required
@@ -134,7 +135,7 @@ export function MonitoringLogForm({ monitoringLog, isViewMode, onClose }: Monito
                                     <img
                                         src={imagePreview}
                                         alt="Preview"
-                                        className="w-full h-48 object-cover rounded-md"
+                                        className="w-full h-full object-cover rounded-md"
                                     />
                                 </div>
                             )}

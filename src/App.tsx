@@ -22,7 +22,7 @@ function App() {
         {path: '/staffs', element: <Staffs/>},
         {path: '/vehicles', element: <Vehicles/>},
         {path: '/equipments', element: <Equipments/>},
-        {path: '/monitoringLogs', element: <MonitoringLog/>},
+        {path: '/logs', element: <MonitoringLog/>},
       ]
     },
     {path: '*', element: <Error/>}

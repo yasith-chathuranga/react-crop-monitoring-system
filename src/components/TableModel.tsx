@@ -17,9 +17,7 @@ export const TableModel: React.FC<TableProps> = ({ columns, data, onRowClick }) 
                             <th
                                 key={index}
                                 className="sticky top-0 bg-neutral-700 text-white pl-2 font-medium z-10 h-10"
-                                aria-label={`Column ${column}`}
-                            >
-                                {column}
+                                aria-label={`Column ${column}`}>{column}
                             </th>
                         ))}
                     </tr>
@@ -29,14 +27,11 @@ export const TableModel: React.FC<TableProps> = ({ columns, data, onRowClick }) 
                         <tr
                             key={rowIndex}
                             className="hover:bg-gray-100 cursor-pointer"
-                            onClick={() => onRowClick?.(row)}
-                        >
+                            onClick={() => onRowClick?.(row)}>
                             {columns.map((column, colIndex) => (
                                 <td
                                     key={colIndex}
-                                    className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2"
-                                >
-                                    {row[column] ?? "-"}
+                                    className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{row[column] ?? "-"}
                                 </td>
                             ))}
                         </tr>

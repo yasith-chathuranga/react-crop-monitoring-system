@@ -7,6 +7,7 @@ import {Staffs} from "./pages/staff/Staffs.tsx";
 import {LogIn} from "./pages/login/LogIn.tsx";
 import {SignUp} from "./pages/signup/SignUp.tsx";
 import {Vehicles} from "./pages/vehicle/Vehicles.tsx";
+import {Equipments} from "./pages/equipment/Equipments.tsx";
 
 function App() {
   const routes = createBrowserRouter([
@@ -19,6 +20,7 @@ function App() {
         {path: '/dashboard', element: <Dashboard/>},
         {path: '/staffs', element: <Staffs/>},
         {path: '/vehicles', element: <Vehicles/>},
+        {path: '/equipments', element: <Equipments/>},
       ]
     },
     {path: '*', element: <Error/>}

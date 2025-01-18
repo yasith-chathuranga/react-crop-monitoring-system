@@ -68,7 +68,7 @@ export function Equipments() {
                                     <button onClick={() => openModalForView(equipment)} className="text-blue-500"><i
                                         className="fas fa-eye"></i>
                                     </button>
-                                    <button onClick={() => openModalForEdit(equipment)} className="text-yellow-500"><i
+                                    <button onClick={() => openModalForEdit(equipment)} className="text-primary"><i
                                         className="fas fa-edit"></i>
                                     </button>
                                     <button onClick={() => handleDelete(equipment)} className="text-red-500"><i

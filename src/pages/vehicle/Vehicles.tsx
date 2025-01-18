@@ -70,7 +70,7 @@ export function Vehicles() {
                                     <button onClick={() => openModalForView(vehicle)} className="text-blue-500"><i
                                         className="fas fa-eye"></i>
                                     </button>
-                                    <button onClick={() => openModalForEdit(vehicle)} className="text-yellow-500"><i
+                                    <button onClick={() => openModalForEdit(vehicle)} className="text-primary"><i
                                         className="fas fa-edit"></i>
                                     </button>
                                     <button onClick={() => handleDelete(vehicle)} className="text-red-500"><i

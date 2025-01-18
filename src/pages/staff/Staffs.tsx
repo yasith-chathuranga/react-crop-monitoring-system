@@ -70,7 +70,7 @@ export function Staffs() {
                                     <button onClick={() => openModalForView(staff)} className="text-blue-500"><i
                                         className="fas fa-eye"></i>
                                     </button>
-                                    <button onClick={() => openModalForEdit(staff)} className="text-yellow-500"><i
+                                    <button onClick={() => openModalForEdit(staff)} className="text-primary"><i
                                         className="fas fa-edit"></i>
                                     </button>
                                     <button onClick={() => handleDelete(staff)} className="text-red-500"><i

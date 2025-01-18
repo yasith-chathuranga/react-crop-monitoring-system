@@ -124,7 +124,7 @@ export function Staffs() {
                         </div>
                     )}
                 </div>
-                <div className="bg-white rounded-[15px] p-6 mt-8 shadow-md">
+                <div className="bg-white rounded-[15px] p-6 mt-6 shadow-md">
                     <h1 className="text-2xl font-medium mb-4">Staff Records</h1>
                     <TableModel columns={columns} data={staffData} />
                 </div>

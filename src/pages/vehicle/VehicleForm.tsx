@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addVehicle, updateVehicle } from "../../reducers/VehicleSlice.ts";
 import { Vehicle } from "../../models/Vehicle.ts";
@@ -86,6 +86,7 @@ export function VehicleForm({ vehicle, isViewMode, onClose }: VehicleFormProps) 
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="e.g., ABC-9876"
                                 value={plateNumber}
                                 onChange={(e) => setPlateNumber(e.target.value)}
                                 required
@@ -93,39 +94,57 @@ export function VehicleForm({ vehicle, isViewMode, onClose }: VehicleFormProps) 
                             />
                         </div>
                         <div>
-                            <label className="block font-semibold text-primary">Vehicle Category</label>
-                            <input
+                            <label className="block font-semibold text-primary">
+                                Category
+                            </label>
+                            <select
                                 className="w-full p-2 border border-accent rounded"
-                                type="text"
                                 value={vehicleCategory}
                                 onChange={(e) => setVehicleCategory(e.target.value)}
                                 required
                                 disabled={isViewMode}
-                            />
+                            >
+                                <option value="">Select Category</option>
+                                <option value="TRACTOR">Tractor</option>
+                                <option value="HARVESTER">Harvester</option>
+                                <option value="PLANTER">Planter</option>
+                                <option value="SPRAYER">Sprayer</option>
+                                <option value="OTHER">Other</option>
+                            </select>
                         </div>
                         <div>
-                            <label className="block font-semibold text-primary">Fuel Type</label>
-                            <input
+                            <label className="block font-semibold text-primary">
+                                Fuel Type
+                            </label>
+                            <select
                                 className="w-full p-2 border border-accent rounded"
-                                type="text"
                                 value={fuelType}
                                 onChange={(e) => setFuelType(e.target.value)}
                                 required
                                 disabled={isViewMode}
-                            />
+                            >
+                                <option value="">Select Fuel Type</option>
+                                <option value="PETROL">Petrol</option>
+                                <option value="DIESEL">Diesel</option>
+                                <option value="ELECTRIC">Electric</option>
+                                <option value="HYBRID">Hybrid</option>
+                            </select>
                         </div>
                         <div>
                             <label className="block font-semibold text-primary">
                                 Status
                             </label>
-                            <input
+                            <select
                                 className="w-full p-2 border border-accent rounded"
-                                type="text"
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value)}
                                 required
                                 disabled={isViewMode}
-                            />
+                            >
+                                <option value="">Select Status</option>
+                                <option value="ACTIVE">Active</option>
+                                <option value="INACTIVE">Inactive</option>
+                            </select>
                         </div>
                         <div>
                             <label className="block font-semibold text-primary">
@@ -134,6 +153,7 @@ export function VehicleForm({ vehicle, isViewMode, onClose }: VehicleFormProps) 
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="e.g., In good condition"
                                 value={remarks}
                                 onChange={(e) => setRemarks(e.target.value)}
                                 required

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addStaff, updateStaff } from "../../reducers/StaffSlice.ts";
 import { Staff } from "../../models/Staff.ts";
@@ -113,6 +113,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="John"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 required
@@ -124,6 +125,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="Doe"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                                 required
@@ -135,6 +137,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="Field Officer"
                                 value={designation}
                                 onChange={(e) => setDesignation(e.target.value)}
                                 required
@@ -142,7 +145,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             />
                         </div>
                         <div>
-                            <label htmlFor="role" className="block font-semibold text-primary">
+                            <label className="block font-semibold text-primary">
                                 Role
                             </label>
                             <select
@@ -212,6 +215,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="123 Main St"
                                 value={addressName}
                                 onChange={(e) => setAddressName(e.target.value)}
                                 required
@@ -225,6 +229,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="Lane 5"
                                 value={addressLane}
                                 onChange={(e) => setAddressLane(e.target.value)}
                                 required
@@ -238,6 +243,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="New York"
                                 value={addressCity}
                                 onChange={(e) => setAddressCity(e.target.value)}
                                 required
@@ -251,6 +257,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="New York"
                                 value={addressState}
                                 onChange={(e) => setAddressState(e.target.value)}
                                 required
@@ -264,6 +271,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="number"
+                                placeholder="10001"
                                 value={addressCode}
                                 onChange={(e) => setAddressCode(e.target.value)}
                                 required
@@ -277,6 +285,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="number"
+                                placeholder="1234567890"
                                 value={contactNo}
                                 onChange={(e) => setContactNo(e.target.value)}
                                 required
@@ -292,6 +301,7 @@ export function StaffForm({ staff, isViewMode, onClose }: StaffFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="johndoe@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required

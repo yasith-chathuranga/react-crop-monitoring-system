@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addEquipment, updateEquipment } from "../../reducers/EquipmentSlice.ts";
 import { Equipment } from "../../models/Equipment.ts";
@@ -80,6 +80,7 @@ export function EquipmentForm({ equipment, isViewMode, onClose }: EquipmentFormP
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="Tractor Model X"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
@@ -91,6 +92,7 @@ export function EquipmentForm({ equipment, isViewMode, onClose }: EquipmentFormP
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
+                                placeholder="Tractor"
                                 value={type}
                                 onChange={(e) => setType(e.target.value)}
                                 required
@@ -98,15 +100,20 @@ export function EquipmentForm({ equipment, isViewMode, onClose }: EquipmentFormP
                             />
                         </div>
                         <div>
-                            <label className="block font-semibold text-primary">Status</label>
-                            <input
+                            <label className="block font-semibold text-primary">
+                                Status
+                            </label>
+                            <select
                                 className="w-full p-2 border border-accent rounded"
-                                type="text"
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value)}
                                 required
                                 disabled={isViewMode}
-                            />
+                            >
+                                <option value="">Select Status</option>
+                                <option value="ACTIVE">Active</option>
+                                <option value="INACTIVE">Inactive</option>
+                            </select>
                         </div>
                     </div>
 

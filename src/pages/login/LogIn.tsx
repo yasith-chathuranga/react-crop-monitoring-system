@@ -42,7 +42,7 @@ export function LogIn() {
                                 <input
                                     type="email"
                                     id="email"
-                                    placeholder="Enter your email"
+                                    placeholder="johndoe@example.com"
                                     className="mt-4 block w-full h-12 px-3 py-2 border border-primary rounded-md shadow-sm focus:ring-primary-700"
                                     autoComplete="email"
                                     required

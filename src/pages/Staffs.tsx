@@ -66,12 +66,15 @@ export function Staffs() {
                                 <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{staff.role}</td>
                                 <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{staff.contactNo}</td>
                                 <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{staff.email}</td>
-                                <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">
-                                    <button onClick={() => openModalForView(staff)} className="text-blue-500">View
+                                <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 flex justify-center align-middle gap-5 p-2">
+                                    <button onClick={() => openModalForView(staff)} className="text-blue-500"><i
+                                        className="fas fa-eye"></i>
                                     </button>
-                                    <button onClick={() => openModalForEdit(staff)} className="text-yellow-500">Update
+                                    <button onClick={() => openModalForEdit(staff)} className="text-yellow-500"><i
+                                        className="fas fa-edit"></i>
                                     </button>
-                                    <button onClick={() => handleDelete(staff)} className="text-red-500">Delete</button>
+                                    <button onClick={() => handleDelete(staff)} className="text-red-500"><i
+                                        className="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
                         ))}

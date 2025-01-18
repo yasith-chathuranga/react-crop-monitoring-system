@@ -1,133 +1,91 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addStaff } from "../reducers/StaffSlice";
-import { SearchBar } from "../components/SearchBar";
-import { TableModel } from "../components/TableModel";
-import { AddBtnModel } from "../components/AddBtnModel";
-import StaffFormModel from "../components/StaffFormModel";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../store/Store.ts";
+import {Staff} from "../models/Staff.ts";
+import {deleteStaff} from "../reducers/StaffSlice.ts";
+import {StaffFormModel} from "../components/StaffFormModel.tsx";
+import {SearchBar} from "../components/SearchBar.tsx";
+import {AddBtnModel} from "../components/AddBtnModel.tsx";
 
 export function Staffs() {
-    const navigate = useNavigate();
+    const staffList = useSelector((state: RootState) => state.staffs);
+    const [selectedStaff, setSelectedStaff] = useState<Staff | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isViewMode, setIsViewMode] = useState(false); // Track whether it's view or edit mode
     const dispatch = useDispatch();
 
-    const [id, setId] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [designation, setDesignation] = useState("");
-    const [role, setRole] = useState("");
-    const [gender, setGender] = useState("");
-    const [dob, setDob] = useState("");
-    const [joinedDate, setJoinedDate] = useState("");
-    const [addressName, setAddressName] = useState("");
-    const [addressLane, setAddressLane] = useState("");
-    const [addressCity, setAddressCity] = useState("");
-    const [addressState, setAddressState] = useState("");
-    const [addressCode, setAddressCode] = useState("");
-    const [contactNo, setContactNo] = useState("");
-    const [email, setEmail] = useState("");
-
-    const columns = ["id", "firstName", "designation", "role"];
-
-    const staffData = [
-        { id: "S1", firstName: "Alice", designation: "Manager", role: "Admin" },
-        { id: "S2", firstName: "Bob", designation: "Scientist", role: "Researcher" },
-    ];
-
-    const handleAddStaff = () => {
-        const newStaff = {
-            id: Math.random().toString(),
-            firstName,
-            lastName,
-            designation,
-            role,
-            gender,
-            dob,
-            joinedDate,
-            addressName,
-            addressLane,
-            addressCity,
-            addressState,
-            addressCode,
-            contactNo,
-            email,
-        };
-        dispatch(addStaff(newStaff));
-        navigate("/staffs");
+    const openModalForAdd = () => {
+        setSelectedStaff(null);
+        setIsViewMode(false);
+        setIsModalOpen(true);
     };
 
-    const [isPopupVisible, setIsPopupVisible] = useState(false);
-
-    const showPopup = () => {
-        setIsPopupVisible(true);
+    const openModalForView = (staff: Staff) => {
+        setSelectedStaff(staff);
+        setIsViewMode(true);
+        setIsModalOpen(true);
     };
 
-    const hidePopup = () => {
-        setIsPopupVisible(false);
+    const openModalForEdit = (staff: Staff) => {
+        setSelectedStaff(staff);
+        setIsViewMode(false);
+        setIsModalOpen(true);
+    };
+
+    const handleDelete = (staff: Staff) => {
+        dispatch(deleteStaff({ id: staff.id }));
     };
 
     return (
         <>
             <div className="ml-[250px] p-5 transition-all ease-in-out duration-300 bg-background h-lvh">
                 <div>
-                    <SearchBar />
+                    <SearchBar/>
                 </div>
                 <div className="flex justify-end">
-                    <AddBtnModel onClick={showPopup}>Add New Staff</AddBtnModel>
-                    {isPopupVisible && (
-                        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                            <div className="bg-white p-6 rounded-md shadow-lg w-full max-w-lg">
-                                <div className="flex justify-between items-center mb-4">
-                                    <h2 className="text-xl font-semibold">Add Staff</h2>
-                                    <button
-                                        onClick={hidePopup}
-                                        className="text-gray-500 hover:text-gray-700"
-                                    >
-                                        &times;
-                                    </button>
-                                </div>
-                                <StaffFormModel
-                                    id={id}
-                                    setId={setId}
-                                    firstName={firstName}
-                                    setFirstName={setFirstName}
-                                    lastName={lastName}
-                                    setLastName={setLastName}
-                                    designation={designation}
-                                    setDesignation={setDesignation}
-                                    role={role}
-                                    setRole={setRole}
-                                    gender={gender}
-                                    setGender={setGender}
-                                    dob={dob}
-                                    setDob={setDob}
-                                    joinedDate={joinedDate}
-                                    setJoinedDate={setJoinedDate}
-                                    addressName={addressName}
-                                    setAddressName={setAddressName}
-                                    addressLane={addressLane}
-                                    setAddressLane={setAddressLane}
-                                    addressCity={addressCity}
-                                    setAddressCity={setAddressCity}
-                                    addressState={addressState}
-                                    setAddressState={setAddressState}
-                                    addressCode={addressCode}
-                                    setAddressCode={setAddressCode}
-                                    contactNo={contactNo}
-                                    setContactNo={setContactNo}
-                                    email={email}
-                                    setEmail={setEmail}
-                                    handleSaveStaff={handleAddStaff}
-                                    onClose={hidePopup}
-                                />
-                            </div>
-                        </div>
-                    )}
+                    <AddBtnModel onClick={openModalForAdd}>Add New Staff</AddBtnModel>
                 </div>
-                <div className="bg-white rounded-[15px] p-6 mt-6 shadow-md">
+                <div className="custom-table w-full overflow-x-auto max-h-[538px] bg-white rounded-[15px] p-6 mt-6 shadow-md">
                     <h1 className="text-2xl font-medium mb-4">Staff Records</h1>
-                    <TableModel columns={columns} data={staffData} />
+                    <table className="w-full border-separate border-spacing-0">
+                        <thead className="sticky top-0 bg-neutral-700 text-white pl-2 font-medium z-10 h-10">
+                        <tr>
+                            <th>Staff ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Contact No</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {staffList.map(staff => (
+                            <tr className="hover:bg-gray-100 cursor-pointer" key={staff.id}>
+                                <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{staff.id}</td>
+                                <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{staff.firstName} {staff.lastName}</td>
+                                <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{staff.role}</td>
+                                <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{staff.contactNo}</td>
+                                <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">{staff.email}</td>
+                                <td className="bg-gray-200 text-black pl-2 font-normal border-b border-gray-400 text-center align-middle p-2">
+                                    <button onClick={() => openModalForView(staff)} className="text-blue-500">View
+                                    </button>
+                                    <button onClick={() => openModalForEdit(staff)} className="text-yellow-500">Update
+                                    </button>
+                                    <button onClick={() => handleDelete(staff)} className="text-red-500">Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
                 </div>
+
+                {isModalOpen && (
+                    <StaffFormModel
+                        staff={selectedStaff}
+                        isViewMode={isViewMode}
+                        onClose={() => setIsModalOpen(false)}
+                    />
+                )}
             </div>
         </>
     );

@@ -1,166 +1,134 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addStaff, updateStaff } from "../reducers/StaffSlice";
+import { Staff } from "../models/Staff";
 
-interface StaffFormModalProps {
-    onSave: (data: StaffData) => void;
-    onUpdate?: (data: StaffData) => void;
-    isUpdateMode?: boolean;
-    existingData?: Partial<StaffData>;
+interface StaffFormProps {
+    staff: Staff | null;
+    isViewMode: boolean;
+    onClose: () => void;
 }
 
-interface StaffData {
-    id: string;
-    firstName: string;
-    lastName: string;
-    designation: string;
-    role: string;
-    gender: string;
-    dob: string;
-    joinedDate: string;
-    addressName: string;
-    addressLane: string;
-    addressCity: string;
-    addressState: string;
-    addressCode: string;
-    contactNo: string;
-    email: string;
-}
+export function StaffFormModel({ staff, isViewMode, onClose }: StaffFormProps) {
+    const [id, setId] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [designation, setDesignation] = useState("");
+    const [role, setRole] = useState("");
+    const [gender, setGender] = useState("");
+    const [dob, setDob] = useState("");
+    const [joinedDate, setJoinedDate] = useState("");
+    const [addressName, setAddressName] = useState("");
+    const [addressLane, setAddressLane] = useState("");
+    const [addressCity, setAddressCity] = useState("");
+    const [addressState, setAddressState] = useState("");
+    const [addressCode, setAddressCode] = useState("");
+    const [contactNo, setContactNo] = useState("");
+    const [email, setEmail] = useState("");
 
-const StaffFormModal: React.FC<StaffFormModalProps> = ({
-                                                           onSave,
-                                                           onUpdate,
-                                                           isUpdateMode = false,
-                                                           existingData = {},
-                                                       }) => {
-    const [formData, setFormData] = useState<StaffData>({
-        id: existingData.id || "",
-        firstName: existingData.firstName || "",
-        lastName: existingData.lastName || "",
-        designation: existingData.designation || "",
-        role: existingData.role || "",
-        gender: existingData.gender || "",
-        dob: existingData.dob || "",
-        joinedDate: existingData.joinedDate || "",
-        addressName: existingData.addressName || "",
-        addressLane: existingData.addressLane || "",
-        addressCity: existingData.addressCity || "",
-        addressState: existingData.addressState || "",
-        addressCode: existingData.addressCode || "",
-        contactNo: existingData.contactNo || "",
-        email: existingData.email || "",
-    });
+    const dispatch = useDispatch();
 
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-    ) => {
-        const { id, value } = e.target;
-        setFormData((prevData) => ({ ...prevData, [id]: value }));
+    useEffect(() => {
+        if (staff) {
+            setId(staff.id);
+            setFirstName(staff.firstName);
+            setLastName(staff.lastName);
+            setDesignation(staff.designation);
+            setRole(staff.role);
+            setGender(staff.gender);
+            setDob(staff.dob);
+            setJoinedDate(staff.joinedDate);
+            setAddressName(staff.addressName);
+            setAddressLane(staff.addressLane);
+            setAddressCity(staff.addressCity);
+            setAddressState(staff.addressState);
+            setAddressCode(staff.addressCode);
+            setContactNo(staff.contactNo);
+            setEmail(staff.email);
+        }
+    }, [staff]);
+
+    const handleClear = () => {
+        setId("");
+        setFirstName("");
+        setLastName("");
+        setDesignation("");
+        setRole("");
+        setGender("");
+        setDob("");
+        setJoinedDate("");
+        setAddressName("");
+        setAddressLane("");
+        setAddressCity("");
+        setAddressState("");
+        setAddressCode("");
+        setContactNo("");
+        setEmail("");
+    };
+
+
+    const handleSave = () => {
+        if (staff) {
+            const updatedStaff = { ...staff, firstName, lastName, designation, role, gender, dob, joinedDate, addressName, addressLane, addressCity, addressState, addressCode, contactNo, email };
+            dispatch(updateStaff(updatedStaff));
+        } else {
+            const newStaff = { id, firstName, lastName, designation, role, gender, dob, joinedDate, addressName, addressLane, addressCity, addressState, addressCode, contactNo, email } as Staff;
+            dispatch(addStaff(newStaff));
+        }
+        onClose();
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (isUpdateMode && onUpdate) {
-            onUpdate(formData);
-        } else {
-            onSave(formData);
-        }
-    };
-
-    const handleClear = () => {
-        setFormData({
-            id: "",
-            firstName: "",
-            lastName: "",
-            designation: "",
-            role: "",
-            gender: "",
-            dob: "",
-            joinedDate: "",
-            addressName: "",
-            addressLane: "",
-            addressCity: "",
-            addressState: "",
-            addressCode: "",
-            contactNo: "",
-            email: "",
-        });
+        handleSave();
     };
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
             <div className="bg-white rounded-lg shadow-lg w-3/4 max-w-4xl">
                 <div className="bg-primary text-white rounded-t-lg p-4 flex justify-between items-center">
-                    <h4 className="font-bold text-2xl">
-                        Staff {isUpdateMode ? "Update" : "Add"} Form
-                    </h4>
-                    <button
-                        className="text-white focus:outline-none"
-                        onClick={handleClear}
-                    >
-                        &times;
-                    </button>
+                    <h2 className="font-bold text-2xl">{isViewMode ? "View Staff" : staff ? "Update Staff" : "Add New Staff"}</h2>
                 </div>
-
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                            <label htmlFor="id" className="block font-semibold text-primary">
-                                Staff ID
-                            </label>
+                            <label className="block font-semibold text-primary">Staff ID</label>
                             <input
-                                type="text"
-                                id="id"
-                                value={formData.id}
-                                onChange={handleChange}
-                                required
                                 className="w-full p-2 border border-accent rounded"
+                                type="text"
+                                value={id}
+                                onChange={(e) => setId(e.target.value)}
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label
-                                htmlFor="firstName"
-                                className="block font-semibold text-primary"
-                            >
-                                First Name
-                            </label>
+                            <label className="block font-semibold text-primary">First Name</label>
                             <input
-                                type="text"
-                                id="firstName"
-                                value={formData.firstName}
-                                onChange={handleChange}
-                                required
                                 className="w-full p-2 border border-accent rounded"
+                                type="text"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label
-                                htmlFor="lastName"
-                                className="block font-semibold text-primary"
-                            >
-                                Last Name
-                            </label>
+                            <label className="block font-semibold text-primary">Last Name</label>
                             <input
-                                type="text"
-                                id="lastName"
-                                value={formData.lastName}
-                                onChange={handleChange}
-                                required
                                 className="w-full p-2 border border-accent rounded"
+                                type="text"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label
-                                htmlFor="designation"
-                                className="block font-semibold text-primary"
-                            >
-                                Designation
-                            </label>
+                            <label className="block font-semibold text-primary">Designation</label>
                             <input
-                                type="text"
-                                id="designation"
-                                value={formData.designation}
-                                onChange={handleChange}
-                                required
                                 className="w-full p-2 border border-accent rounded"
+                                type="text"
+                                value={designation}
+                                onChange={(e) => setDesignation(e.target.value)}
+                                disabled={isViewMode}
                             />
                         </div>
                         <div>
@@ -169,8 +137,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             </label>
                             <select
                                 id="role"
-                                value={formData.role}
-                                onChange={handleChange}
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
                                 required
                                 className="w-full p-2 border border-accent rounded"
                             >
@@ -190,8 +158,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             </label>
                             <select
                                 id="gender"
-                                value={formData.gender}
-                                onChange={handleChange}
+                                value={gender}
+                                onChange={(e) => setGender(e.target.value)}
                                 required
                                 className="w-full p-2 border border-accent rounded"
                             >
@@ -214,8 +182,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="date"
                                 id="dob"
-                                value={formData.dob}
-                                onChange={handleChange}
+                                value={dob}
+                                onChange={(e) => setDob(e.target.value)}
                                 required
                                 className="w-full p-2 border border-accent rounded"
                             />
@@ -230,8 +198,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="date"
                                 id="joinedDate"
-                                value={formData.joinedDate}
-                                onChange={handleChange}
+                                value={joinedDate}
+                                onChange={(e) => setJoinedDate(e.target.value)}
                                 required
                                 className="w-full p-2 border border-accent rounded"
                             />
@@ -243,8 +211,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="text"
                                 id="addressName"
-                                value={formData.addressName}
-                                onChange={handleChange}
+                                value={addressName}
+                                onChange={(e) => setAddressName(e.target.value)}
                                 className="w-full p-2 border border-accent rounded"
                             />
                         </div>
@@ -255,8 +223,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="text"
                                 id="addressLane"
-                                value={formData.addressLane}
-                                onChange={handleChange}
+                                value={addressLane}
+                                onChange={(e) => setAddressLane(e.target.value)}
                                 className="w-full p-2 border border-accent rounded"
                             />
                         </div>
@@ -267,8 +235,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="text"
                                 id="addressCity"
-                                value={formData.addressCity}
-                                onChange={handleChange}
+                                value={addressCity}
+                                onChange={(e) => setAddressCity(e.target.value)}
                                 className="w-full p-2 border border-accent rounded"
                             />
                         </div>
@@ -279,8 +247,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="text"
                                 id="addressState"
-                                value={formData.addressState}
-                                onChange={handleChange}
+                                value={addressState}
+                                onChange={(e) => setAddressState(e.target.value)}
                                 className="w-full p-2 border border-accent rounded"
                             />
                         </div>
@@ -291,8 +259,8 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="number"
                                 id="addressCode"
-                                value={formData.addressCode}
-                                onChange={handleChange}
+                                value={addressCode}
+                                onChange={(e) => setAddressCode(e.target.value)}
                                 className="w-full p-2 border border-accent rounded"
                             />
                         </div>
@@ -303,13 +271,12 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="number"
                                 id="contactNo"
-                                value={formData.contactNo}
-                                onChange={handleChange}
+                                value={contactNo}
+                                onChange={(e) => setContactNo(e.target.value)}
                                 className="w-full p-2 border border-accent rounded"
                             />
                         </div>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                         <div>
                             <label htmlFor="email" className="block font-semibold text-primary">
@@ -318,32 +285,20 @@ const StaffFormModal: React.FC<StaffFormModalProps> = ({
                             <input
                                 type="text"
                                 id="email"
-                                value={formData.email}
-                                onChange={handleChange}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 className="w-full p-2 border border-accent rounded"
                             />
                         </div>
                     </div>
 
                     <div className="flex justify-end gap-4">
-                        <button
-                            type="button"
-                            onClick={handleClear}
-                            className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary"
-                        >
-                            Clear
-                        </button>
-                        <button
-                            type="submit"
-                            className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary"
-                        >
-                        {isUpdateMode ? "Update" : "Save"}
-                        </button>
+                        <button className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary" type="button" onClick={handleClear} disabled={isViewMode}>Clear</button>
+                        <button className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary" type="submit" disabled={isViewMode}>{staff ? "Update" : "Save"}</button>
+                        <button className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary" type="button" onClick={onClose}>Close</button>
                     </div>
                 </form>
             </div>
         </div>
     );
-};
-
-export default StaffFormModal;
+}

@@ -18,3 +18,5 @@ export const store = configureStore({
         vehicles: VehicleSlice
     }
 });
+// Export RootState type
+export type RootState = ReturnType<typeof store.getState>;

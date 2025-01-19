@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+<div align="center">
+  <img src="src/assets/main-logo.png" alt="Green Shadow Logo" width="200" style="margin-top: 50px" />
+<div style="font-size: x-large">GreenShadow-FRONTEND</div>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Introduction
+This Web-base System developed for Green Shadow (Pvt) Ltd., a company specializing in root crops and cereals. As the company expands to large-scale production, this system helps manage crops and assets efficiently. The crop-monitoring-backend API supports real-time tracking of crop data and field conditions, enabling data-driven decision-making for optimized farming operations.
 
-Currently, two official plugins are available:
+### Technologies Used
+- **React**
+- **React Router**
+- **React Redux**
+- **React Effect**
+- **Typescript**
+- **Tailwind**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Features
+- **Staff Management**
+- **Field Management**
+- **Crop Management**
+- **Equipment Management**
+- **Monitoring Log Management**
+- **Vehicle Management**
 
-## Expanding the ESLint configuration
+### API Repository Link
+      https://github.com/yasith-chathuranga/crop-monitoring-system.git
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### License
 
-- Configure the top-level `parserOptions` property like this:
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Running the Application
+1. **Clone the repository:**
+   ```bash
+   https://github.com/yasith-chathuranga/react-crop-monitoring-system.git
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+##
+<div align="center">
+<a href="https://github.com/yasith-chathuranga" target="_blank"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>
+<a href="https://git-scm.com/" target="_blank"><img src = "https://img.shields.io/badge/Git-100000?style=for-the-badge&logo=git&logoColor=white"></a>
+<a href="https://reactjs.org/" target="_blank"><img src="https://img.shields.io/badge/React-100000?style=for-the-badge&logo=react&logoColor=white" alt="React Badge" /></a>
+<a href="https://www.typescriptlang.org/" target="_blank"><img src="https://img.shields.io/badge/TypeScript-100000?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript Badge" /></a>
+<a href="https://fontawesome.com/" target="_blank"><img src="https://img.shields.io/badge/FontAwesome-100000?style=for-the-badge&logo=font-awesome&logoColor=white" alt="FontAwesome Badge" /></a>
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+<p align="center">
+  &copy; 2025 Yasith Chathuranga
+</p>
+</div>

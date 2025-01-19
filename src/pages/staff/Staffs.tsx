@@ -9,6 +9,8 @@ import {AddBtnModel} from "../../components/common/AddBtnModel.tsx";
 
 export function Staffs() {
     const staffList = useSelector((state: RootState) => state.staffs);
+    const staffs = useSelector((state: { staffs: Staff[] }) => state.staffs);
+    const [searchId, setSearchId] = useState('');
     const [selectedStaff, setSelectedStaff] = useState<Staff | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isViewMode, setIsViewMode] = useState(false); // Track whether it's view or edit mode
@@ -36,11 +38,27 @@ export function Staffs() {
         dispatch(deleteStaff({ id: staff.id }));
     };
 
+    const handleSearchStaff = () => {
+        const staff: Staff | undefined = staffs.find((s: Staff) => s.id === searchId);
+        if (staff) {
+            setSelectedStaff(staff);
+            setIsModalOpen(true);
+            setIsViewMode(true);
+        } else {
+            alert('Staff not found');
+            setSelectedStaff(null);
+        }
+    };
+
     return (
         <>
             <div className="ml-[250px] p-5 transition-all ease-in-out duration-300 bg-background h-lvh">
                 <div>
-                    <SearchBar/>
+                    <SearchBar
+                        placeholder="Search By Staff ID"
+                        value={searchId}
+                        onChange={setSearchId}
+                        onSearch={handleSearchStaff}/>
                 </div>
                 <div className="flex justify-end">
                     <AddBtnModel onClick={openModalForAdd}>Add New Staff</AddBtnModel>

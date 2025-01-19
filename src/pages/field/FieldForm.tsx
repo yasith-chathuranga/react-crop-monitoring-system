@@ -124,7 +124,7 @@ export function FieldForm({ field, isViewMode, onClose }: FieldFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                placeholder="e.g. Potato"
+                                placeholder="e.g. South Field"
                                 value={fieldName}
                                 onChange={(e) => setFieldName(e.target.value)}
                                 required
@@ -136,7 +136,7 @@ export function FieldForm({ field, isViewMode, onClose }: FieldFormProps) {
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                placeholder="e.g. Solanum tuberosum"
+                                placeholder="e.g. 37.7749,-122.4194"
                                 value={fieldLocation}
                                 onChange={(e) => setFieldLocation(e.target.value)}
                                 required

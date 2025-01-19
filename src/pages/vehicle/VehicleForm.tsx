@@ -60,7 +60,7 @@ export function VehicleForm({ vehicle, isViewMode, onClose }: VehicleFormProps) 
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
             <div className="bg-white rounded-lg shadow-lg w-3/4 max-w-4xl">
                 <div className="bg-primary text-white rounded-t-lg p-4 flex justify-between items-center">
-                    <h2 className="font-bold text-2xl">{isViewMode ? "View MonitoringLog" : vehicle ? "Update MonitoringLog" : "Add New MonitoringLog"}</h2>
+                    <h2 className="font-bold text-2xl">{isViewMode ? "View MonitoringLogs" : vehicle ? "Update MonitoringLogs" : "Add New MonitoringLogs"}</h2>
                     <button
                         className="px-6 py-2 bg-primary text-white rounded"
                         type="button"

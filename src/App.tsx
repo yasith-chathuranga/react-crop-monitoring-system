@@ -8,7 +8,8 @@ import {LogIn} from "./pages/login/LogIn.tsx";
 import {SignUp} from "./pages/signup/SignUp.tsx";
 import {Vehicles} from "./pages/vehicle/Vehicles.tsx";
 import {Equipments} from "./pages/equipment/Equipments.tsx";
-import {MonitoringLog} from "./pages/monitoringLog/MonitoringLog.tsx";
+import {MonitoringLogs} from "./pages/monitoringLog/MonitoringLogs.tsx";
+import {Crops} from "./pages/crop/Crops.tsx";
 
 function App() {
   const routes = createBrowserRouter([
@@ -20,9 +21,10 @@ function App() {
         {path: '/signup', element: <SignUp/>},
         {path: '/dashboard', element: <Dashboard/>},
         {path: '/staffs', element: <Staffs/>},
-        {path: '/vehicles', element: <Vehicles/>},
+        {path: '/crops', element: <Crops/>},
+        {path: '/logs', element: <MonitoringLogs/>},
         {path: '/equipments', element: <Equipments/>},
-        {path: '/logs', element: <MonitoringLog/>},
+        {path: '/vehicles', element: <Vehicles/>},
       ]
     },
     {path: '*', element: <Error/>}

@@ -8,7 +8,7 @@ import { SearchBar } from "../../components/SearchBar";
 import { AddBtnModel } from "../../components/AddBtnModel";
 import { LogCardModel } from "../../components/LogCardModel";
 
-export function MonitoringLog() {
+export function MonitoringLogs() {
     const logList = useSelector((state: RootState) => state.monitoringLogs.logs) || [];
     const [selectedLog, setSelectedLog] = useState<MonitoringLogModel | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);

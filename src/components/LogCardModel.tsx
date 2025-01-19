@@ -12,7 +12,7 @@ export function LogCardModel({ monitoringLog, onView, onUpdate, onDelete }: LogC
 
     return (
         <div className="card p-5 bg-white shadow-md rounded-lg hover:shadow-lg max-w-xs border-2">
-            <h2 className="text-xl font-bold">{monitoringLog.logCode}</h2>
+            <h2 className="text-xl font-bold mb-2">{monitoringLog.logCode}</h2>
             <div className="flex justify-center items-center relative w-48 h-48 bg-gray-200 overflow-hidden mx-auto">
                 <img
                     src={monitoringLog.observedImage || defaultImage}

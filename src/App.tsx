@@ -10,6 +10,7 @@ import {Vehicles} from "./pages/vehicle/Vehicles.tsx";
 import {Equipments} from "./pages/equipment/Equipments.tsx";
 import {MonitoringLogs} from "./pages/monitoringLog/MonitoringLogs.tsx";
 import {Crops} from "./pages/crop/Crops.tsx";
+import {Fields} from "./pages/field/Fields.tsx";
 
 function App() {
   const routes = createBrowserRouter([
@@ -21,6 +22,7 @@ function App() {
         {path: '/signup', element: <SignUp/>},
         {path: '/dashboard', element: <Dashboard/>},
         {path: '/staffs', element: <Staffs/>},
+        {path: '/fields', element: <Fields/>},
         {path: '/crops', element: <Crops/>},
         {path: '/logs', element: <MonitoringLogs/>},
         {path: '/equipments', element: <Equipments/>},

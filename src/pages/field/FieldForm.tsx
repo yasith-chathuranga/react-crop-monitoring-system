@@ -1,73 +1,87 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addCrop, updateCrop } from "../../reducers/CropSlice.ts";
-import { Crop } from "../../models/Crop.ts";
+import { addField, updateField } from "../../reducers/FieldSlice.ts";
+import { Field } from "../../models/Field.ts";
 
-interface CropFormProps {
-    crop: Crop | null;
+interface FieldFormProps {
+    field: Field | null;
     isViewMode: boolean;
     onClose: () => void;
 }
 
-export function CropForm({ crop, isViewMode, onClose }: CropFormProps) {
-    const [cropCode, setCropCode] = useState("");
-    const [cropCommonName, setCropCommonName] = useState("");
-    const [cropScientificName, setCropScientificName] = useState("");
-    const [category, setCategory] = useState("");
-    const [cropSeason, setCropSeason] = useState("");
-    const [, setCropImage] = useState<File | null>(null);
-    const [imagePreview, setImagePreview] = useState<string | null>("");
+export function FieldForm({ field, isViewMode, onClose }: FieldFormProps) {
+    const [fieldCode, setFieldCode] = useState("");
+    const [fieldName, setFieldName] = useState("");
+    const [fieldLocation, setFieldLocation] = useState("");
+    const [fieldExtentSize, setFieldExtentSize] = useState("");
+    const [, setFieldImage1] = useState<File | null>(null);
+    const [, setFieldImage2] = useState<File | null>(null);
+    const [imagePreview1, setImagePreview1] = useState<string | null>("");
+    const [imagePreview2, setImagePreview2] = useState<string | null>("");
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (crop) {
-            setCropCode(crop.cropCode);
-            setCropCommonName(crop.cropCommonName);
-            setCropScientificName(crop.cropScientificName);
-            setCategory(crop.category);
-            setCropSeason(crop.cropSeason);
-            setImagePreview(crop.cropImage);
+        if (field) {
+            setFieldCode(field.fieldCode);
+            setFieldName(field.fieldName);
+            setFieldLocation(field.fieldLocation);
+            setFieldExtentSize(field.fieldExtentSize);
+            setImagePreview1(field.fieldImage1);
+            setImagePreview2(field.fieldImage2);
         }
-    }, [crop]);
+    }, [field]);
 
     const handleClear = () => {
-        setCropCode("");
-        setCropCommonName("");
-        setCropScientificName("");
-        setCategory("");
-        setCropSeason("");
-        setCropImage(null);
-        setImagePreview(null);
+        setFieldCode("");
+        setFieldName("");
+        setFieldLocation("");
+        setFieldExtentSize("");
+        setFieldImage1(null);
+        setFieldImage2(null);
+        setImagePreview1(null);
+        setImagePreview2(null);
     };
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageChangeOne = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            setCropImage(file);
+            setFieldImage1(file);
             const reader = new FileReader();
             reader.onload = () => {
-                setImagePreview(reader.result as string);
+                setImagePreview1(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleImageChangeTwo = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setFieldImage2(file);
+            const reader = new FileReader();
+            reader.onload = () => {
+                setImagePreview2(reader.result as string);
             };
             reader.readAsDataURL(file);
         }
     };
 
     const handleSave = () => {
-        const updatedCrop = {
-            ...crop,
-            cropCode,
-            cropCommonName,
-            cropScientificName,
-            category,
-            cropSeason,
-            cropImage: imagePreview,
-        } as Crop;
+        const updatedField = {
+            ...field,
+            fieldCode,
+            fieldName,
+            fieldLocation,
+            fieldExtentSize,
+            fieldImage1: imagePreview1,
+            fieldImage2: imagePreview2,
+        } as Field;
 
-        if (crop) {
-            dispatch(updateCrop(updatedCrop));
+        if (field) {
+            dispatch(updateField(updatedField));
         } else {
-            dispatch(addCrop(updatedCrop));
+            dispatch(addField(updatedField));
         }
         onClose();
     };
@@ -82,7 +96,7 @@ export function CropForm({ crop, isViewMode, onClose }: CropFormProps) {
             <div className="bg-white rounded-lg shadow-lg w-3/4 max-w-4xl">
                 <div className="bg-primary text-white rounded-t-lg p-4 flex justify-between items-center">
                     <h2 className="font-bold text-2xl">
-                        {isViewMode ? "View Crop" : crop ? "Update Crop" : "Add New Crop"}
+                        {isViewMode ? "View Field" : field ? "Update Field" : "Add New Field"}
                     </h2>
                     <button
                         className="px-6 py-2 bg-primary text-white rounded"
@@ -95,84 +109,86 @@ export function CropForm({ crop, isViewMode, onClose }: CropFormProps) {
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                            <label className="block font-semibold text-primary">Crop Code</label>
+                            <label className="block font-semibold text-primary">Field Code</label>
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                value={cropCode}
-                                onChange={(e) => setCropCode(e.target.value)}
+                                value={fieldCode}
+                                onChange={(e) => setFieldCode(e.target.value)}
                                 required
                                 disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label className="block font-semibold text-primary">Crop Common Name</label>
+                            <label className="block font-semibold text-primary">Field Name</label>
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
                                 placeholder="e.g. Potato"
-                                value={cropCommonName}
-                                onChange={(e) => setCropCommonName(e.target.value)}
+                                value={fieldName}
+                                onChange={(e) => setFieldName(e.target.value)}
                                 required
                                 disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label className="block font-semibold text-primary">Crop Scientific Name</label>
+                            <label className="block font-semibold text-primary">Field Location</label>
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
                                 placeholder="e.g. Solanum tuberosum"
-                                value={cropScientificName}
-                                onChange={(e) => setCropScientificName(e.target.value)}
+                                value={fieldLocation}
+                                onChange={(e) => setFieldLocation(e.target.value)}
                                 required
                                 disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label className="block font-semibold text-primary">Category</label>
+                            <label className="block font-semibold text-primary">Field Extent Size</label>
                             <input
                                 className="w-full p-2 border border-accent rounded"
                                 type="text"
-                                placeholder="e.g. Vegetables"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                                placeholder="e.g. 20 acres"
+                                value={fieldExtentSize}
+                                onChange={(e) => setFieldExtentSize(e.target.value)}
                                 required
                                 disabled={isViewMode}
                             />
                         </div>
                         <div>
-                            <label className="block font-semibold text-primary">
-                                Season
-                            </label>
-                            <select
-                                className="w-full p-2 border border-accent rounded"
-                                value={cropSeason}
-                                onChange={(e) => setCropSeason(e.target.value)}
-                                required
-                                disabled={isViewMode}
-                            >
-                                <option value="">Select Season</option>
-                                <option value="Spring">Spring</option>
-                                <option value="Summer">Summer</option>
-                                <option value="Autumn">Autumn</option>
-                                <option value="Winter">Winter</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label className="block font-semibold text-primary">Crop Image</label>
+                            <label className="block font-semibold text-primary">Field Image 1</label>
                             {!isViewMode && (
                                 <input
                                     className="w-full p-2 border border-accent rounded"
                                     type="file"
                                     accept="image/*"
-                                    onChange={handleImageChange}
+                                    onChange={handleImageChangeOne}
                                 />
                             )}
-                            {imagePreview && (
+                            {imagePreview1 && (
                                 <div className="mt-4 border-2 border-dashed border-secondary p-2 flex justify-center items-center">
                                     <img
-                                        src={imagePreview}
+                                        src={imagePreview1}
+                                        alt="Preview"
+                                        className="w-32 h-32 object-cover rounded-md"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div>
+                            <label className="block font-semibold text-primary">Field Image 2</label>
+                            {!isViewMode && (
+                                <input
+                                    className="w-full p-2 border border-accent rounded"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChangeTwo}
+                                />
+                            )}
+                            {imagePreview2 && (
+                                <div className="mt-4 border-2 border-dashed border-secondary p-2 flex justify-center items-center">
+                                    <img
+                                        src={imagePreview2}
                                         alt="Preview"
                                         className="w-32 h-32 object-cover rounded-md"
                                     />
@@ -194,7 +210,7 @@ export function CropForm({ crop, isViewMode, onClose }: CropFormProps) {
                                     className="px-6 py-2 w-32 bg-primary text-white rounded hover:bg-secondary"
                                     type="submit"
                                 >
-                                    {crop ? "Update" : "Save"}
+                                    {field ? "Update" : "Save"}
                                 </button>
                             </>
                         )}

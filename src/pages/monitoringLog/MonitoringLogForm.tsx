@@ -131,11 +131,11 @@ export function MonitoringLogForm({ monitoringLog, isViewMode, onClose }: Monito
                                 />
                             )}
                             {imagePreview && (
-                                <div className="mt-4 border-2 border-dashed border-secondary p-2">
+                                <div className="mt-4 border-2 border-dashed border-secondary p-2 flex justify-center items-center">
                                     <img
                                         src={imagePreview}
                                         alt="Preview"
-                                        className="w-full h-full object-cover rounded-md"
+                                        className="w-32 h-32 object-cover rounded-md"
                                     />
                                 </div>
                             )}

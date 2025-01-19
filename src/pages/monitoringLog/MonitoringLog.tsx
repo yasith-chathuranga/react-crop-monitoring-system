@@ -46,25 +46,26 @@ export function MonitoringLog() {
                 <div className="flex justify-end">
                     <AddBtnModel onClick={openModalForAdd}>Add New Log</AddBtnModel>
                 </div>
-                <div className="custom-table w-full overflow-x-auto max-h-[538px] bg-white rounded-[15px] p-6 mt-6 shadow-md scrollbar-thin">
+                <div className="custom-table w-full overflow-x-auto bg-white rounded-[15px] p-6 mt-6 shadow-md scrollbar-thin">
                     <h1 className="text-2xl font-medium mb-4">Monitoring Log Records</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {logList.length > 0 ? (
-                            logList.map((log) => (
-                                <LogCardModel
-                                    key={log.logCode}
-                                    monitoringLog={log}
-                                    onView={openModalForView}
-                                    onUpdate={openModalForEdit}
-                                    onDelete={handleDelete}
-                                />
-                            ))
-                        ) : (
-                            <p>No logs available.</p>
-                        )}
+                    <div className="overflow-y-auto max-h-[450px] scrollbar-thin p-2">
+                        <div className="grid lg:grid-cols-5 gap-6">
+                            {logList.length > 0 ? (
+                                logList.map((log) => (
+                                    <LogCardModel
+                                        key={log.logCode}
+                                        monitoringLog={log}
+                                        onView={openModalForView}
+                                        onUpdate={openModalForEdit}
+                                        onDelete={handleDelete}
+                                    />
+                                ))
+                            ) : (
+                                <p>No logs available.</p>
+                            )}
+                        </div>
                     </div>
                 </div>
-
                 {isModalOpen && (
                     <MonitoringLogForm
                         monitoringLog={selectedLog}

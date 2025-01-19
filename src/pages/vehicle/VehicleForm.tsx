@@ -166,13 +166,13 @@ export function VehicleForm({ vehicle, isViewMode, onClose }: VehicleFormProps) 
                         {!isViewMode && (
                             <>
                                 <button
-                                    className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary"
+                                    className="px-6 py-2 w-32 bg-primary text-white rounded hover:bg-secondary"
                                     type="button"
                                     onClick={handleClear}>
                                     Clear
                                 </button>
                                 <button
-                                    className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary"
+                                    className="px-6 py-2 w-32 bg-primary text-white rounded hover:bg-secondary"
                                     type="submit">
                                     {vehicle ? "Update" : "Save"}
                                 </button>

@@ -11,7 +11,7 @@ export function LogCardModel({ monitoringLog, onView, onUpdate, onDelete }: LogC
     const defaultImage = "";
 
     return (
-        <div className="card p-5 bg-white shadow-md rounded-lg hover:shadow-lg max-w-xs">
+        <div className="card p-5 bg-white shadow-md rounded-lg hover:shadow-lg max-w-xs border-2">
             <h2 className="text-xl font-boldr">Log Code: {monitoringLog.logCode}</h2>
             <div className="flex justify-center items-center relative w-48 h-48 bg-gray-200 overflow-hidden mx-auto">
                 <img
@@ -20,7 +20,7 @@ export function LogCardModel({ monitoringLog, onView, onUpdate, onDelete }: LogC
                     className="object-cover w-full h-full"
                 />
             </div>
-            <h3 className="pt-2">{monitoringLog.logDetails}</h3>
+            <h3 className="pt-2 text-justify">{monitoringLog.logDetails}</h3>
             <p className="pt-2 text-gray-600">Log Date: {new Date(monitoringLog.logDate).toLocaleDateString()}</p>
             <div className="flex justify-around gap-4 pt-4">
                 {onView && (

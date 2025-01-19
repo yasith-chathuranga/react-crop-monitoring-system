@@ -131,7 +131,7 @@ export function MonitoringLogForm({ monitoringLog, isViewMode, onClose }: Monito
                                 />
                             )}
                             {imagePreview && (
-                                <div className="mt-4">
+                                <div className="mt-4 border-2 border-dashed border-secondary p-2">
                                     <img
                                         src={imagePreview}
                                         alt="Preview"
@@ -145,14 +145,14 @@ export function MonitoringLogForm({ monitoringLog, isViewMode, onClose }: Monito
                         {!isViewMode && (
                             <>
                                 <button
-                                    className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary"
+                                    className="px-6 py-2 w-32 bg-primary text-white rounded hover:bg-secondary"
                                     type="button"
                                     onClick={handleClear}
                                 >
                                     Clear
                                 </button>
                                 <button
-                                    className="px-6 py-2 bg-primary text-white rounded hover:bg-secondary"
+                                    className="px-6 py-2 w-32 bg-primary text-white rounded hover:bg-secondary"
                                     type="submit"
                                 >
                                     {monitoringLog ? "Update" : "Save"}

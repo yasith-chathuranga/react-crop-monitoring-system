@@ -4,8 +4,8 @@ import {RootState} from "../../store/Store.ts";
 import {Staff} from "../../models/Staff.ts";
 import {deleteStaff} from "../../reducers/StaffSlice.ts";
 import {StaffForm} from "./StaffForm.tsx";
-import {SearchBar} from "../../components/SearchBar.tsx";
-import {AddBtnModel} from "../../components/AddBtnModel.tsx";
+import {SearchBar} from "../../components/common/SearchBar.tsx";
+import {AddBtnModel} from "../../components/common/AddBtnModel.tsx";
 
 export function Staffs() {
     const staffList = useSelector((state: RootState) => state.staffs);

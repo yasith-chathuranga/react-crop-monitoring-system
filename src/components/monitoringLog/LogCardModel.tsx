@@ -1,4 +1,4 @@
-import { MonitoringLog } from "../models/MonitoringLog";
+import { MonitoringLog } from "../../models/MonitoringLog.ts";
 
 interface LogCardProps {
     monitoringLog: MonitoringLog;

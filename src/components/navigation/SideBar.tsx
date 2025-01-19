@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import mainLogo from "../assets/main-logo.png";
+import mainLogo from "../../assets/main-logo.png";
 
 export function SideBar() {
     return (

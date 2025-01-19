@@ -4,9 +4,9 @@ import { RootState } from "../../store/Store";
 import { Field as FieldModel } from "../../models/Field.ts";
 import { deleteField } from "../../reducers/FieldSlice.ts";
 import { FieldForm } from "./FieldForm.tsx";
-import { SearchBar } from "../../components/SearchBar";
-import { AddBtnModel } from "../../components/AddBtnModel";
-import {FieldCardModel} from "../../components/FieldCardModel.tsx";
+import { SearchBar } from "../../components/common/SearchBar.tsx";
+import { AddBtnModel } from "../../components/common/AddBtnModel.tsx";
+import {FieldCardModel} from "../../components/field/FieldCardModel.tsx";
 
 export function Fields() {
     const fieldList = useSelector((state: RootState) => state.fields) || [];

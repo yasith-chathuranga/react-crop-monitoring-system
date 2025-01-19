@@ -4,9 +4,9 @@ import { RootState } from "../../store/Store";
 import { Crop as CropModel } from "../../models/Crop";
 import { deleteCrop } from "../../reducers/CropSlice";
 import { CropForm } from "./CropForm";
-import { SearchBar } from "../../components/SearchBar";
-import { AddBtnModel } from "../../components/AddBtnModel";
-import { CropCardModel } from "../../components/CropCardModel";
+import { SearchBar } from "../../components/common/SearchBar.tsx";
+import { AddBtnModel } from "../../components/common/AddBtnModel.tsx";
+import { CropCardModel } from "../../components/crop/CropCardModel.tsx";
 
 export function Crops() {
     const cropList = useSelector((state: RootState) => state.crops) || [];

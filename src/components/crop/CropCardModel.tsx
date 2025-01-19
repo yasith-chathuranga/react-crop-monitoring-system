@@ -1,4 +1,4 @@
-import { Crop } from "../models/Crop";
+import { Crop } from "../../models/Crop.ts";
 
 interface CropCardProps {
     crop: Crop;

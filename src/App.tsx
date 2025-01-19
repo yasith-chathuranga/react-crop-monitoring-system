@@ -1,6 +1,6 @@
 import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {RootLayout} from "./components/RootLayout.tsx";
+import {RootLayout} from "./components/navigation/RootLayout.tsx";
 import {Error} from "./pages/Error.tsx";
 import {Dashboard} from "./pages/dashboard/Dashboard.tsx";
 import {Staffs} from "./pages/staff/Staffs.tsx";

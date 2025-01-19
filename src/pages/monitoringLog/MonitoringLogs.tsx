@@ -4,9 +4,9 @@ import { RootState } from "../../store/Store";
 import { MonitoringLog as MonitoringLogModel } from "../../models/MonitoringLog";
 import { deleteMonitoringLog } from "../../reducers/MonitoringLogSlice";
 import { MonitoringLogForm } from "./MonitoringLogForm";
-import { SearchBar } from "../../components/SearchBar";
-import { AddBtnModel } from "../../components/AddBtnModel";
-import { LogCardModel } from "../../components/LogCardModel";
+import { SearchBar } from "../../components/common/SearchBar.tsx";
+import { AddBtnModel } from "../../components/common/AddBtnModel.tsx";
+import { LogCardModel } from "../../components/monitoringLog/LogCardModel.tsx";
 
 export function MonitoringLogs() {
     const logList = useSelector((state: RootState) => state.monitoringLogs.logs) || [];

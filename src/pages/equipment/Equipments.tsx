@@ -4,8 +4,8 @@ import { RootState } from "../../store/Store.ts";
 import { Equipment } from "../../models/Equipment.ts";
 import { deleteEquipment } from "../../reducers/EquipmentSlice.ts";
 import { EquipmentForm } from "./EquipmentForm.tsx";
-import { SearchBar } from "../../components/SearchBar.tsx";
-import { AddBtnModel } from "../../components/AddBtnModel.tsx";
+import { SearchBar } from "../../components/common/SearchBar.tsx";
+import { AddBtnModel } from "../../components/common/AddBtnModel.tsx";
 
 export function Equipments() {
     const equipmentList = useSelector((state: RootState) => state.equipments);

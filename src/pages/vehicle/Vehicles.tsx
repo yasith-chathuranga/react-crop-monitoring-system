@@ -4,8 +4,8 @@ import {RootState} from "../../store/Store.ts";
 import {Vehicle} from "../../models/Vehicle.ts";
 import {deleteVehicle} from "../../reducers/VehicleSlice.ts";
 import {VehicleForm} from "./VehicleForm.tsx";
-import {SearchBar} from "../../components/SearchBar.tsx";
-import {AddBtnModel} from "../../components/AddBtnModel.tsx";
+import {SearchBar} from "../../components/common/SearchBar.tsx";
+import {AddBtnModel} from "../../components/common/AddBtnModel.tsx";
 
 export function Vehicles() {
     const vehicleList = useSelector((state: RootState) => state.vehicles);

@@ -1,4 +1,4 @@
-import { Field } from "../models/Field.ts";
+import { Field } from "../../models/Field.ts";
 
 interface FieldCardProps {
     field: Field;

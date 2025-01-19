@@ -46,7 +46,7 @@ export function MonitoringLog() {
                 <div className="flex justify-end">
                     <AddBtnModel onClick={openModalForAdd}>Add New Log</AddBtnModel>
                 </div>
-                <div className="custom-table w-full overflow-x-auto max-h-[538px] bg-white rounded-[15px] p-6 mt-6 shadow-md">
+                <div className="custom-table w-full overflow-x-auto max-h-[538px] bg-white rounded-[15px] p-6 mt-6 shadow-md scrollbar-thin">
                     <h1 className="text-2xl font-medium mb-4">Monitoring Log Records</h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {logList.length > 0 ? (

@@ -6,6 +6,16 @@
 ### Introduction
 This Web-base System developed for Green Shadow (Pvt) Ltd., a company specializing in root crops and cereals. As the company expands to large-scale production, this system helps manage crops and assets efficiently. The crop-monitoring-backend API supports real-time tracking of crop data and field conditions, enabling data-driven decision-making for optimized farming operations.
 
+### Screenshots
+
+Project UI screenshots are available [here](https://drive.google.com/drive/folders/1oA82cuzVKgIB5Ozv5jGAp0mvgTxyZodY?usp=sharing).
+
+#### User Interface
+
+<div>
+  <img src="src/assets/collage-ui.png" alt="collage-ui" width="500" height="300">
+</div>
+
 ### Technologies Used
 - **React**
 - **React Router**

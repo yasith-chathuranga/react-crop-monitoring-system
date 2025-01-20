@@ -13,7 +13,7 @@ Project UI screenshots are available [here](https://drive.google.com/drive/folde
 #### User Interface
 
 <div>
-  <img src="src/assets/collage-ui.png" alt="collage-ui" width="500" height="300">
+  <img src="src/assets/collage-ui.png" alt="collage-ui" width="auto" height="auto">
 </div>
 
 ### Technologies Used

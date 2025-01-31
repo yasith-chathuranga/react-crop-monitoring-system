@@ -32,9 +32,6 @@ Project UI screenshots are available [here](https://drive.google.com/drive/folde
 - **Monitoring Log Management**
 - **Vehicle Management**
 
-### API Repository Link
-      https://github.com/yasith-chathuranga/crop-monitoring-system.git
-
 ### License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
